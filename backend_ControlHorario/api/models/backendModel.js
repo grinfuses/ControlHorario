@@ -5,14 +5,17 @@ var RegistroSchema = new Schema({
   name: {
     type: String
   },
-  horaEntrada: {
+  dia: {
     type: Date
+  },
+  horaEntrada: {
+    type: String
   },
   horaSalida: {
-    type: Date
+    type: String
   },
   horasLaborables: {
-    type: Date
+    type: String
   },
   Observaciones: {
     type: String
