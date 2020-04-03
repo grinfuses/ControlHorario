@@ -1,19 +1,21 @@
 'use strict';
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-
-
 var RegistroSchema = new Schema({
   name: {
-    type: String,
-    required: 'usuario'
+    type: String
   },
   horaEntrada: {
-    type: Date,
-    default: Date.now
+    type: Date
   },
   horaSalida: {
-    type: Date,
+    type: Date
+  },
+  horasLaborables: {
+    type: Date
+  },
+  Observaciones: {
+    type: String
   }
 });
 
