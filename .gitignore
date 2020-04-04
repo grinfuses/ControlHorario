@@ -2,4 +2,6 @@ node_modules
 .gradle/
 package-lock.json
 backend_ControlHorario/.gradle
-controlHorario/platform/*
+controlHorario/platforms/*
+.DS_Store
+controlHorario/.DS_Store
