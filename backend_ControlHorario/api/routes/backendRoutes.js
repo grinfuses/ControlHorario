@@ -6,4 +6,5 @@ module.exports = function(app) {
   app.route('/registros').get(backend.list_all_registros);
   app.route('/nuevoregistro').post(backend.add_registro);
   app.route('/modificaregistro').post(backend.update_registro);
+  app.route('/borraregistro/:taskId').delete(backend.deleteregistro);
 };

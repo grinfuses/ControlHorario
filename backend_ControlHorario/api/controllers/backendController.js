@@ -40,7 +40,7 @@ exports.update_registro = function(req, res) {
 };
 
 
-exports.delete_a_task = function(req, res) {
+exports.deleteregistro = function(req, res) {
   Registros.remove({
     _id: req.params.taskId
   }, function(err, task) {
