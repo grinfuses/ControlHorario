@@ -1,1 +1,5 @@
 node_modules
+.gradle/
+package-lock.json
+backend_ControlHorario/.gradle
+controlHorario/platform/*
