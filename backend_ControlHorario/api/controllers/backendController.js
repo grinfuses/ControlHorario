@@ -65,7 +65,6 @@ exports.add_registro = function(req, res) {
     horas = "0"+horas;
   }
   var result = horas+":"+minutos;
-  console.log(result);
   data.saldoHorario = result;
   var new_task = new Registros(data);
   new_task.save(function(err, task) {
@@ -91,20 +90,57 @@ exports.update_registro = function(req, res) {
   });
 };
 
-exports.buscar = function(req, res) {
+exports.buscarPorFecha = function(req, res) {
   var fecha_desde = req.params.fecha_inicio;
   var fecha_hasta = req.params.fecha_fin;
-  console.log("Desde: "+fecha_desde);
-  console.log("Hasta: "+fecha_hasta);
   Registros.find({dia:{
     $gte: fecha_desde,
     $lte: fecha_hasta
-  }}, req.body, {new: true}, function(err, task) {
+  }}, function(err, task) {
     if (err)
       res.send(err);
     res.json(task);
   });
 
+};
+exports.buscarPorFechaAcumulando = function(req, res) {
+  var fecha_desde = req.params.fecha_inicio;
+  var fecha_hasta = req.params.fecha_fin;
+  Registros.find({dia:{
+    $gte: fecha_desde,
+    $lte: fecha_hasta
+  }}, function(err, task) {
+    if (err){
+      res.send(err);}else{
+    var data_api_total = task;}
+
+  console.log(data_api_total);
+  var total = 0;
+  data_api_total.forEach(function (obj) {
+    var a = obj.saldoHorario.split(':'); // split it at the colons
+    // minutes are worth 60 seconds. Hours are worth 60 minutes.
+    if(a[2]==undefined){
+      a[2]='0';
+    }
+    var seconds = (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]); 
+    total += seconds;
+  });
+
+  var hour = Math.floor(total / 3600);
+  hour = (hour < 10)? '0' + hour : hour;
+  var minute = Math.floor((total / 60) % 60);
+  minute = (minute < 10)? '0' + minute : minute;
+  var second = total % 60;
+  second = (second < 10)? '0' + second : second;
+  var suma_acumulada = hour + ':' + minute + ':' + second;
+  console.log(suma_acumulada);
+  var datatemp = {
+    "suma_acumulada" : suma_acumulada
+};
+data_api_total.push(datatemp);
+ 
+  res.json(data_api_total);
+  });
 };
 
 
