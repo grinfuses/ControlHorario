@@ -17,9 +17,12 @@ var RegistroSchema = new Schema({
   horasLaborables: {
     type: String
   },
+  saldoHorario: {
+    type: String
+  },
   Observaciones: {
     type: String
   }
-});
+}) ;
 
 module.exports = mongoose.model('Registros', RegistroSchema);
