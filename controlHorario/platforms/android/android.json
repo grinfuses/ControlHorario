@@ -19,7 +19,7 @@
   },
   "installed_plugins": {
     "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "com.example.controlHorario"
+      "PACKAGE_NAME": "com.example.controlhorario"
     }
   },
   "dependent_plugins": {},

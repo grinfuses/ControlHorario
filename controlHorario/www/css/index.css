@@ -17,15 +17,15 @@
  * under the License.
  */
 * {
-    /*-webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
 }
 
 body {
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
-    /*background-color:#E4E4E4;
-    /*background-image:linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);*/
+    background-color:#E4E4E4;
+    background-image:linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
     font-family: system-ui, -apple-system, -apple-system-font, 'Segoe UI', 'Roboto', sans-serif;
     font-size:12px;
     height:100vh;
@@ -36,20 +36,14 @@ body {
     text-transform:uppercase;
     width:100%;
 }
-#header {
-    margin-left: 20%;
-    height:50px;                   /* text area height */
-    width:225px;                   /* text area width */
-    padding:180px 150px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
 
-}
 /* Portrait layout (default) */
 .app {
-    /*background:url(../img/logo_inves.png) no-repeat center top; /* 170px x 200px */
+    background:url(../img/inves.jpg) no-repeat center top; /* 170px x 200px */
     position:absolute;             /* position in the center of the screen */
     left:50%;
-    top:50%;
-    height:50px;                   /* text area height */
+    top:30%;
+    height:250px;                   /* text area height */
     width:225px;                   /* text area width */
     text-align:center;
     padding:180px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
@@ -68,9 +62,9 @@ body {
 }
 
 h1 {
-    font-size:24px;
+    font-size:20px;
     font-weight:normal;
-    margin:0px;
+    margin:-230px;
     overflow:visible;
     padding:0px;
     text-align:center;
@@ -110,4 +104,67 @@ h1 {
 .blink {
     animation:fade 3000ms infinite;
     -webkit-animation:fade 3000ms infinite;
+}
+#header {
+    position:absolute;             /* position in the center of the screen */
+    /*left:40%;*/
+    top:10%;
+    height:250px;                   /* text area height */
+    width:200px;                   /* text area width */
+    text-align:center;
+    /*padding:180px 200px 200px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
+    /*margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
+                                   /* offset horizontal: half of text area width */
+    font-family:Arial, Helvetica, sans-serif;
+   
+    width:500px;
+    margin:180px 250px 0px -120px;
+}
+
+ul, ol {
+    list-style:none;
+}
+
+.nav > li {
+    float:left;
+}
+
+.nav li a {
+    background-color:#4B946A;
+    color:#fff;
+    text-decoration:none;
+    padding:10px 12px;
+    display:block;
+}
+
+.nav li a:hover {
+    background-color:#434343;
+}
+
+.nav li ul {
+    display:none;
+    position:absolute;
+    min-width:140px;
+}
+
+.nav li:hover > ul {
+    display:block;
+}
+
+.nav li ul li {
+    position:relative;
+}
+
+.nav li ul li ul {
+    right:-140px;
+    top:0px;
+}
+#content{
+    position:absolute;             /* position in the center of the screen */
+    /*left:40%;*/
+    top:70%;
+    height:300px;                   /* text area height */
+    width:250px;                   /* text area width */
+    font-size: 10px;
+    margin:10px 20px 20px -30px;
 }
