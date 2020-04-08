@@ -1,0 +1,5 @@
+.vscode/*
+typings/*
+platforms/*
+../controlHorario_back/*
+www/js/api/*
