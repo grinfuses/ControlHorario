@@ -46,7 +46,6 @@ $( "#buscar_registros" ).submit(function( event ) {
         console.log(JSON.stringify(errorThrown));
       },
       success: function (data) {
-       alert('Registro creado.');
        console.log(data);
        var col = [];
        for (var i = 0; i < data.length; i++) {
