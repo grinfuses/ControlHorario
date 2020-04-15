@@ -187,3 +187,7 @@ table, th, td
 th {
     font-weight:bold;
 }
+.hidden {
+    display: none;
+    visibility: hidden;
+  } 

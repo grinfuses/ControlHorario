@@ -6,36 +6,8 @@ $( "#buscar_registros" ).submit(function( event ) {
       data[this.id] = $(this).val();
   });
     var url_get ="http://ec2-35-180-234-37.eu-west-3.compute.amazonaws.com:3000/buscarPorFechaAcumulando/" +data.dia_inicio+"/"+data.dia_fin;
-    // $.ajax({
-    //       url: url_get,
-    //       type: 'post',
-    //       dataType: 'json',
-    //       error: function(XMLHttpRequest, textStatus, errorThrown) {
-    //         alert('Error al consultar el registro');
-    //         console.log(JSON.stringify(XMLHttpRequest));
-    //         console.log(JSON.stringify(textStatus));
-    //         console.log(JSON.stringify(errorThrown));
-    //       },
-    //       success: function (data) {
-    //         console.log("entra sucess");
-    //         console.log(data);
-    //       },
-    // timeout: 5000 // sets timeout to 3 seconds      
-    // });
-    // var settings = {
-    //   "url": "http://ec2-35-180-234-37.eu-west-3.compute.amazonaws.com:3000/buscarPorFechaAcumulando/2020-01-01/2020-08-01",
-    //   "method": "POST",
-    //   "timeout": 4000,
-    //   "headers": {
-    //     "Content-Type": "application/x-www-form-urlencoded"
-    //   },
-    // };
-    
-    // $.ajax(settings).done(function (response) {
-    //   console.log(response);
-    // });
     $.ajax({
-      url: "http://ec2-35-180-234-37.eu-west-3.compute.amazonaws.com:3000/buscarPorFechaAcumulando/2020-01-01/2020-08-01",
+      url: url_get,
       type: 'post',
       timeout: 5000, 
       dataType: 'json',
@@ -46,12 +18,13 @@ $( "#buscar_registros" ).submit(function( event ) {
         console.log(JSON.stringify(errorThrown));
       },
       success: function (data) {
-       console.log(data);
        var col = [];
        for (var i = 0; i < data.length; i++) {
            for (var key in data[i]) {
                if (col.indexOf(key) === -1) {
-                   col.push(key);
+                   if(key=="dia" || key=="horaEntrada" || key =="horaSalida" || key=="Observaciones" ||key=="saldoHorario" || key=="suma_acumulada"){
+                        col.push(key);
+                    }
                }
            }
        }
@@ -67,7 +40,8 @@ $( "#buscar_registros" ).submit(function( event ) {
                    th.innerHTML = col[i];
                    tr.appendChild(th);
                }
-       
+               var space="";
+               const regex = /[0-9]*-[0-9]*-[0-9]*T[0-9]*:[0-9]*:[0-9]*.[0-9]*Z/;
                // ADD JSON DATA TO THE TABLE AS ROWS.
                for (var i = 0; i < data.length; i++) {
        
@@ -75,9 +49,31 @@ $( "#buscar_registros" ).submit(function( event ) {
        
                    for (var j = 0; j < col.length; j++) {
                        var tabCell = tr.insertCell(-1);
-                       tabCell.innerHTML = data[i][col[j]];
+                       var data_input = data[i][col[j]];
+                       
+                       if(data_input ==null){
+                        tabCell.innerHTML = space;
+                       }else{
+                        if(data_input.match(regex)){
+                            date = new Date(data_input);
+                                year = date.getFullYear();
+                                month = date.getMonth()+1;
+                                dt = date.getDate();
+                                if (dt < 10) {
+                                dt = '0' + dt;
+                                }
+                                if (month < 10) {
+                                month = '0' + month;
+                                }
+                                var day_input = dt+'/'+month+'/'+year;
+                                tabCell.innerHTML =day_input; 
+                        }else{
+                            tabCell.innerHTML = data_input;
+                        }
+                    }
+                       }
                    }
-               }
+               
        
                // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
                var divContainer = document.getElementById("tabla_registros");
